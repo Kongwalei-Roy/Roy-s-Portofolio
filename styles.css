@@ -976,34 +976,34 @@ body.dark-mode .footer p {
     section {
         padding: 70px 0;
     }
-}/* Reduce image height */
-.project-card .project-image {
-    height: 180px; /* matches Financial Dashboard */
+}
+/* FORCE 3D card to match other cards */
+.project-card.project-card-3d .project-image {
+  height: 200px !important; /* same as your default card image height */
 }
 
-/* Tighten content spacing */
-.project-card .project-content {
-    padding: 18px;
+.project-card.project-card-3d .project-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
 }
 
-/* Clamp description text to prevent tall cards */
-.project-card .project-description {
-    font-size: 0.95rem;
-    line-height: 1.4;
-
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* limits height */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+.project-card.project-card-3d .project-content {
+  padding: 20px !important;
 }
 
-/* Normalize title size */
-.project-card .project-title {
-    font-size: 1.35rem;
+.project-card.project-card-3d .project-title {
+  font-size: 1.4rem !important;
 }
 
-/* Slightly smaller tech tags */
-.project-card .tech-tag {
-    font-size: 0.75rem;
-    padding: 4px 10px;
+.project-card.project-card-3d .project-description {
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+
+  /* limit text so it doesn't make the card taller */
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
 }
+
