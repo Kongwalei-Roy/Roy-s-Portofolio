@@ -977,3 +977,29 @@ body.dark-mode .footer p {
         padding: 70px 0;
     }
 }
+.project-card.project-card-3d .project-image {
+  height: 180px !important;
+}
+
+/* Reduce padding inside the card */
+.project-card.project-card-3d .project-content {
+  padding: 18px !important;
+}
+
+/* Match title size */
+.project-card.project-card-3d .project-title {
+  font-size: 1.35rem !important;
+}
+
+/* Limit description text to keep card height consistent */
+.project-card.project-card-3d .project-description {
+  font-size: 0.95rem !important;
+  line-height: 1.4 !important;
+  overflow: hidden !important;
+}
+
+/* Make tech tags smaller */
+.project-card.project-card-3d .tech-tag {
+  font-size: 0.75rem !important;
+  padding: 4px 10px !important;
+}
