@@ -1000,10 +1000,4 @@ body.dark-mode .footer p {
   font-size: 1rem !important;
   line-height: 1.6 !important;
 
-  /* limit text so it doesn't make the card taller */
-  display: -webkit-box !important;
-  -webkit-line-clamp: 3 !important;
-  -webkit-box-orient: vertical !important;
-  overflow: hidden !important;
 }
-
