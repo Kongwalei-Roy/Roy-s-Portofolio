@@ -977,27 +977,3 @@ body.dark-mode .footer p {
         padding: 70px 0;
     }
 }
-/* FORCE 3D card to match other cards */
-.project-card.project-card-3d .project-image {
-  height: 200px !important; /* same as your default card image height */
-}
-
-.project-card.project-card-3d .project-image img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-}
-
-.project-card.project-card-3d .project-content {
-  padding: 20px !important;
-}
-
-.project-card.project-card-3d .project-title {
-  font-size: 1.4rem !important;
-}
-
-.project-card.project-card-3d .project-description {
-  font-size: 1rem !important;
-  line-height: 1.6 !important;
-
-}
