@@ -976,4 +976,34 @@ body.dark-mode .footer p {
     section {
         padding: 70px 0;
     }
+}/* Reduce image height */
+.project-card .project-image {
+    height: 180px; /* matches Financial Dashboard */
+}
+
+/* Tighten content spacing */
+.project-card .project-content {
+    padding: 18px;
+}
+
+/* Clamp description text to prevent tall cards */
+.project-card .project-description {
+    font-size: 0.95rem;
+    line-height: 1.4;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* limits height */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Normalize title size */
+.project-card .project-title {
+    font-size: 1.35rem;
+}
+
+/* Slightly smaller tech tags */
+.project-card .tech-tag {
+    font-size: 0.75rem;
+    padding: 4px 10px;
 }
