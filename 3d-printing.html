@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Printing & Digital Fabrication</title>
+
+  <!-- Use your main CSS so it matches your portfolio style -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Font Awesome (only if your main site uses it) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    /* Small page-specific layout (keeps your main theme) */
+    .project-page { padding: 110px 0 80px; }
+
+    .project-hero {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    body.dark-mode .project-hero { background: var(--dark-card); }
+
+    .project-hero-img { height: 320px; overflow: hidden; }
+
+    .project-hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(50%);
+    }
+
+    .project-hero-content { padding: 24px; }
+
+    .project-hero-content h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 12px 0 18px;
+    }
+
+    .meta-pill {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    body.dark-mode .meta-pill {
+      background: rgba(37, 99, 235, 0.2);
+      color: var(--accent);
+    }
+
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .project-actions a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 999px;
+      transition: var(--transition);
+    }
+
+    .action-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
+    }
+
+    .action-secondary {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      background: transparent;
+    }
+
+    .action-secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 900px) {
+      .content-grid { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    body.dark-mode .panel { background: var(--dark-card); }
+
+    .panel h2 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    body.dark-mode .panel h2 { color: var(--dark-text); }
+
+    .panel p {
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+
+    body.dark-mode .panel p { color: var(--dark-text-light); }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      filter: grayscale(40%);
+      transition: var(--transition);
+    }
+
+    .gallery img:hover {
+      filter: grayscale(0%);
+      transform: scale(1.02);
+    }
+
+    .back-link {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      margin-top: 16px;
+    }
+
+    .back-link:hover { transform: translateX(-3px); }
+  </style>
+</head>
+
+<body>
+  <div class="container project-page">
+    <a class="back-link" href="index.html">
+      <i class="fas fa-arrow-left"></i> Back to Portfolio
+    </a>
+
+    <div class="project-hero">
+      <div class="project-hero-img">
+        <img src="3dprinting.jpeg" alt="3D printing project cover" />
+      </div>
+
+      <div class="project-hero-content">
+        <h1>3D Printing & Digital Fabrication</h1>
+        <p class="subtitle" style="margin-bottom: 0;">
+          A three-part ENGR11A project exploring multi-color printing, calibration, and open-source assistive tech
+          using a Prusa MINI+ and PrusaSlicer.
+        </p>
+
+        <div class="meta-row">
+          <span class="meta-pill">Prusa MINI+</span>
+          <span class="meta-pill">PrusaSlicer</span>
+          <span class="meta-pill">Generic PLA</span>
+          <span class="meta-pill">0.4mm Nozzle</span>
+          <span class="meta-pill">0.20mm SPEED</span>
+        </div>
+
+        <div class="project-actions">
+          <a class="action-primary" href="https://github.com/yourusername/3d-printing" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i> GitHub Repo
+          </a>
+
+          <a class="action-secondary" href="#" onclick="alert('Add your report link here!')">
+            <i class="fas fa-file"></i> Report / Writeup
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-grid">
+      <!-- LEFT: Main content -->
+      <div class="panel">
+        <h2>3D Printing & Digital Fabrication — ENGR11A</h2>
+        <p>
+          This project helped me go beyond “just printing a file” and actually understand the full workflow:
+          editing models, slicing with purpose, handling real printer events, and judging results based on quality,
+          accuracy, and usability.
+        </p>
+
+        <h2>Print 1 — Customized Nametag (Process & Analysis)</h2>
+        <p>
+          For my first print, I designed a personalized nametag in PrusaSlicer using an Original Prusa MINI+ with a 0.4 mm nozzle
+          and Input Shaper enabled. I started from a provided <strong>3MF</strong> file, edited the text to
+          <strong>“Roy Kiprop Kongwalei”</strong>, and adjusted the font and scale while keeping the original multi-color design.
+        </p>
+        <p>
+          Before printing, I used <strong>Preview mode</strong> and the <strong>layer slider</strong> to confirm the
+          filament change pause was still built into the file. That’s one huge advantage of 3MF: it can save slicing details
+          (like pauses and settings), not just shape. I sliced using the <strong>0.20 mm SPEED</strong> profile with
+          <strong>Generic PLA</strong> and <strong>15% infill</strong>, with an estimated print time of about <strong>13 minutes</strong>.
+        </p>
+        <p>
+          During the print, the printer paused and chirped at the correct layer. I unloaded the first filament, loaded the new color,
+          purged until extrusion looked clean, and resumed. The result printed with clear text, strong contrast, and solid first-layer
+          adhesion on the smooth sheet.
+        </p>
+
+        <h2>Print 2 — Calibration / Torture Test (Analysis)</h2>
+        <p>
+          For the second print, I chose a twisted vase calibration model meant to stress continuous overhangs, thin walls,
+          and smooth curvature. I imported it as an <strong>STL</strong>, meaning I had to set slicing values manually from scratch.
+          I printed with <strong>0.20 mm SPEED</strong>, <strong>Generic PLA</strong>, <strong>Input Shaper enabled</strong>,
+          and <strong>supports off</strong> to intentionally push the limits.
+        </p>
+        <p>
+          The vase printed cleanly through most of its height, showing consistent layer stacking and strong extrusion control.
+          Minor artifacts appeared near steeper overhang transitions and close to the top opening, where curvature tightens and cooling becomes harder.
+          This made the printer’s real limitations visible: unsupported angles and cooling performance eventually decide the cleanest result.
+        </p>
+        <p>
+          This print reinforced a key design lesson: successful models must respect overhang angles, wall thickness, and curvature flow.
+          It also highlighted the difference between <strong>STL</strong> (geometry-only) versus <strong>3MF</strong> (repeatable workflow settings).
+        </p>
+
+        <h2>Print 3 — Open-Source Assistive Device: Can Opener</h2>
+        <p>
+          For my third print, I selected an open-source can opener from the <strong>Makers Making Change</strong> Assistive Device Catalog.
+          This tool is designed to support people with limited grip strength, reduced hand mobility, or arthritis by increasing leverage and reducing
+          the force needed to open everyday containers.
+        </p>
+        <p>
+          I downloaded the <strong>STL</strong> and sliced it in PrusaSlicer using an Original Prusa MINI+ with <strong>Input Shaper enabled</strong>,
+          printing at <strong>0.20 mm</strong> with <strong>no supports</strong>. The print finished successfully with strong layer adhesion and a rigid feel,
+          making it suitable for real use.
+        </p>
+        <p>
+          When tested, the opener fit securely onto a can lid and noticeably improved leverage. The printed text and directional indicators came out clean,
+          showing strong dimensional accuracy. The documentation was clear, but adding recommended materials and sizing tips could make the design even more accessible.
+          Overall, this part connected fabrication to real impact: open-source printing can produce low-cost, customizable assistive tools locally.
+        </p>
+
+        <h2>Gallery</h2>
+        <div class="gallery">
+          <img src="3d_printing.jpeg" alt="3D printing cover" />
+          <img src="nametag.jpeg" alt="Printed nametag" />
+          <img src="bottleopener.jpeg" alt="PrusaSlicer screenshot" />
+          <img src="vase.jpeg" alt="Twisted vase print" />
+          <img src="vase2.jpeg" alt="Twisted vase print" />
+          <img src="vase3.jpeg" alt="Twisted vase print" />
+        </div>
+      </div>
+
+      <!-- RIGHT: Quick facts / results -->
+      <div class="panel">
+        <h2>Key Settings</h2>
+        <p><strong>Printer:</strong> Original Prusa MINI+</p>
+        <p><strong>Nozzle:</strong> 0.4mm</p>
+        <p><strong>Profile:</strong> 0.20mm SPEED</p>
+        <p><strong>Material:</strong> Generic PLA</p>
+        <p><strong>Infill:</strong> 15%</p>
+
+        <h2>What I Learned</h2>
+        <p>• 3MF saves print instructions (pauses, settings) while STL is geometry-only</p>
+        <p>• Preview + layer slider helps verify toolpaths before wasting material</p>
+        <p>• Overhangs + cooling define quality on thin, curved designs</p>
+
+        <h2>Next Improvements</h2>
+        <p>• Slow down or increase cooling for steep overhang zones</p>
+        <p>• Try variable layer height for smoother curves</p>
+        <p>• Test temperature ranges for sharper edges</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
