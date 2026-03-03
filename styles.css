@@ -384,17 +384,15 @@ body.dark-mode .subtitle {
 }
 
 .profile-img {
-    width: 1000px; /* Further increased width for a larger picture */
-    max-width: 1000px; /* Adjusted max-width accordingly */
-    aspect-ratio: 1 / 1; /* Ensures the picture remains square */
+    width: 480px; /* Further increased width for a larger picture */
+    height: 480px; /* Increased height to maintain aspect ratio */
     border-radius: 50%;
     object-fit: cover;
-    background: linear-gradient(135deg, #4e9af1, #8b5cf6);
     box-shadow: var(--shadow-lg);
+    object-position: center 20%; /* Adjust face position */
     z-index: 2;
     filter: grayscale(0%);
     transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
-    height: 1000px; 
 }
 
 .profile-img:hover {
