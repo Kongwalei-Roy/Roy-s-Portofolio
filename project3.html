@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Project #3 — Form and Fit for Electronics</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    .project-page { padding: 110px 0 80px; }
+
+    .project-hero {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    body.dark-mode .project-hero { background: var(--dark-card); }
+
+    .project-hero-img { height: 320px; overflow: hidden; }
+
+    .project-hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(35%);
+    }
+
+    .project-hero-content { padding: 24px; }
+
+    .project-hero-content h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 12px 0 18px;
+    }
+
+    .meta-pill {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    body.dark-mode .meta-pill {
+      background: rgba(37, 99, 235, 0.2);
+      color: var(--accent);
+    }
+
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .project-actions a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 999px;
+      transition: var(--transition);
+    }
+
+    .action-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
+    }
+
+    .action-secondary {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      background: transparent;
+    }
+
+    .action-secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 900px) {
+      .content-grid { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    body.dark-mode .panel { background: var(--dark-card); }
+
+    .panel h2 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .panel h3 {
+      margin-top: 18px;
+      margin-bottom: 8px;
+      color: var(--primary);
+      font-size: 1.05rem;
+    }
+
+    body.dark-mode .panel h2,
+    body.dark-mode .panel h3 { color: var(--dark-text); }
+
+    .panel p, .panel li {
+      color: var(--text-light);
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    body.dark-mode .panel p,
+    body.dark-mode .panel li { color: var(--dark-text-light); }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      filter: grayscale(20%);
+      transition: var(--transition);
+    }
+
+    .gallery img:hover {
+      filter: grayscale(0%);
+      transform: scale(1.02);
+    }
+
+    .back-link {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      margin-top: 16px;
+    }
+
+    .back-link:hover { transform: translateX(-3px); }
+
+    ul {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container project-page">
+    <a class="back-link" href="index.html">
+      <i class="fas fa-arrow-left"></i> Back to Portfolio
+    </a>
+
+    <div class="project-hero">
+      <div class="project-hero-img">
+        <!-- Change to your best cover image -->
+        <img src="robot-cover.jpeg" alt="Robot chassis project cover" />
+      </div>
+
+      <div class="project-hero-content">
+        <h1>Design Project #3 — Form and Fit for Electronics</h1>
+        <p class="subtitle" style="margin-bottom: 0;">
+          A collaborative engineering project focused on assembling a robot kit and designing
+          two chassis enclosures optimized for both 3D printing and laser cutting.
+        </p>
+
+        <div class="meta-row">
+          <span class="meta-pill">3D Printing</span>
+          <span class="meta-pill">Laser Cutting</span>
+          <span class="meta-pill">OnShape</span>
+          <span class="meta-pill">Electronics Prototyping</span>
+          <span class="meta-pill">LightBand</span>
+        </div>
+
+        <div class="project-actions">
+          <a class="action-primary" href="#">
+            <i class="fas fa-link"></i> OnShape
+          </a>
+
+          <a class="action-secondary" href="#">
+            <i class="fas fa-file"></i> Report / Writeup
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-grid">
+      <div class="panel">
+        <h2>Project Overview</h2>
+        <p>
+          For this project, my partner <strong>Gerrardo</strong> and I assembled a robot kit and
+          created two enclosure designs: one optimized for <strong>3D printing</strong> and another
+          for <strong>laser cutting</strong>. The goal was to understand how design changes depending
+          on manufacturing method while making sure the final chassis allowed the robot to function properly.
+        </p>
+
+        <h2>Part 1: Assembling the Robot</h2>
+        <p>
+          In the first part of the project, Gerrardo and I assembled the robot by soldering the
+          electronic components onto the circuit board. Before building, I read the instruction manual
+          and expected the main challenges to be soldering precision,identifying components correctly,
+          and making sure the motors,sensors, and wires were installed in the proper locations.The
+          manual was helpful because it included diagrams and a step by step process, but some images
+          were small and could have been clearer for beginners. During assembly, we divided the work by
+          organizing the components, checking placement, and soldering the board carefully. This part of
+          the project helped me better understand the robot’s layout and how the electronics connect to
+          the physical structure. It also prepared us for the next stages because building the robot first
+          made it easier to design an enclosure that matched the actual dimensions and functional needs.
+        </p>
+
+        <h2>Part 2: Designing and 3D Printing the Chassis</h2>
+        <p>
+          After assembling the robot, we measured it using digital calipers so we could create a chassis
+          that fit accurately. We paid attention to the board size,wheel clearance,sensor position,
+          battery access, LED visibility, and power button location. Using these measurements, we designed
+          a 3D printed enclosure in CAD that would protect the electronics while still allowing the robot
+          to move and function correctly. The 3D printed version gave us more freedom to create curved
+          surfaces and a single integrated shell. After exporting the model as an STL file, we prepared it
+          in slicer software and printed the first version. Testing the fit showed how important tolerances
+          are in 3D printing, since even a small dimensional mismatch can affect movement or access. This
+          step taught me that 3D printing is powerful for custom geometry, but it requires careful iteration
+          and adjustment to get a final design that fits and works well.
+        </p>
+
+        <h2>Part 3: Designing and Laser Cutting the Chassis</h2>
+        <p>
+          For the final part, we designed a second enclosure specifically for laser cutting. Unlike the
+          3D printed version, this design had to be built from flat panels that could be cut from sheet
+          material and assembled afterward. We used a finger-joint style so the pieces could interlock
+          and create a rigid structure around the robot. The chassis still needed to meet the same
+          functional requirements: open space for the wheels, sensor access to the ground, visible LEDs,
+          battery access, and a reachable power button. Laser cutting changed the way we approached design
+          because it required thinking in flat surfaces and joints instead of curved forms. After cutting
+          the pieces, we assembled the enclosure and checked its fit on the robot. This part of the project
+          clearly showed the difference between additive and subtractive manufacturing. It also taught me
+          that the manufacturing process strongly shapes design decisions, materials, tolerances, and the
+          overall structure of a final product.
+        </p>
+
+        <h2>Final Reflection</h2>
+        <p>
+          This project showed me that engineering is not only about making something that works, but also
+          about designing with manufacturing constraints in mind. Working with Gerrardo helped us divide
+          tasks efficiently and compare ideas throughout the process. I learned how electronics assembly,
+          measurement, CAD, prototyping, and fabrication all connect in one workflow. The biggest lesson
+          was the importance of iteration: a design may look correct digitally, but testing it physically
+          reveals what needs improvement. Comparing 3D printing and laser cutting also helped me understand
+          how different tools require different design strategies.
+        </p>
+
+        <h2>Gallery</h2>
+        <div class="gallery">
+          <img src="Motor.jpeg" alt="Robot assembly process" />
+          <img src="robot2.jpeg" alt="Soldering electronics kit" />
+          <img src="chassis.jpeg" alt="Laser cut chassis" />
+          <img src="3d Chassis.jpeg" alt="3D printed chassis" />
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Quick Facts</h2>
+        <p><strong>Course:</strong> ENGR11</p>
+        <p><strong>Project:</strong> Design Project #3</p>
+        <p><strong>Partner:</strong> Gerrardo Rios</p>
+        <p><strong>Focus:</strong> Form and fit for electronics</p>
+        <p><strong>Tools:</strong> OnShape,Digital calipers,PrusaSlicer,Laser cutter,Lightburn</p>
+        <p><strong>Methods:</strong> 3D printing and laser cutting</p>
+
+        <h2>Key Requirements</h2>
+        <p>• Wheels must move freely</p>
+        <p>• Sensors must see the ground</p>
+        <p>• LEDs must remain visible</p>
+        <p>• Batteries must be accessible</p>
+        <p>• Power button must be reachable</p>
+
+        <h2>What I Learned</h2>
+        <p>• Soldering requires precision and patience</p>
+        <p>• Accurate measurements are essential for fit</p>
+        <p>• 3D printing supports more organic geometry</p>
+        <p>• Laser cutting requires flat-part thinking and assembly planning</p>
+
+        <h2>Why It Matters</h2>
+        <p>
+          This project connected electronics, CAD, and fabrication into one complete design process.
+          It showed how engineers must balance function, manufacturing limits and iteration in order
+          to create a successful product.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
