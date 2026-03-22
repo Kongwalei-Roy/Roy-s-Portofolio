@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Project #4 — Open-source Assistive Technology</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    .project-page { padding: 110px 0 80px; }
+
+    .project-hero {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    body.dark-mode .project-hero { background: var(--dark-card); }
+
+    .project-hero-img { height: 320px; overflow: hidden; }
+
+    .project-hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(35%);
+    }
+
+    .project-hero-content { padding: 24px; }
+
+    .project-hero-content h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 12px 0 18px;
+    }
+
+    .meta-pill {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    body.dark-mode .meta-pill {
+      background: rgba(37, 99, 235, 0.2);
+      color: var(--accent);
+    }
+
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .project-actions a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 999px;
+      transition: var(--transition);
+    }
+
+    .action-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
+    }
+
+    .action-secondary {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      background: transparent;
+    }
+
+    .action-secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 900px) {
+      .content-grid { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    body.dark-mode .panel { background: var(--dark-card); }
+
+    .panel h2 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .panel h3 {
+      margin-top: 18px;
+      margin-bottom: 8px;
+      color: var(--primary);
+      font-size: 1.05rem;
+    }
+
+    body.dark-mode .panel h2,
+    body.dark-mode .panel h3 { color: var(--dark-text); }
+
+    .panel p, .panel li {
+      color: var(--text-light);
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    body.dark-mode .panel p,
+    body.dark-mode .panel li { color: var(--dark-text-light); }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      filter: grayscale(20%);
+      transition: var(--transition);
+    }
+
+    .gallery img:hover {
+      filter: grayscale(0%);
+      transform: scale(1.02);
+    }
+
+    .back-link {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      margin-top: 16px;
+    }
+
+    .back-link:hover { transform: translateX(-3px); }
+
+    ul {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container project-page">
+    <a class="back-link" href="index.html">
+      <i class="fas fa-arrow-left"></i> Back to Portfolio
+    </a>
+
+    <div class="project-hero">
+      <div class="project-hero-img">
+        <img src="hand1.jpeg" alt="Phoenix Hand project cover" />
+      </div>
+
+      <div class="project-hero-content">
+        <h1>Design Project #4 — Open-source Assistive Technology</h1>
+        <p class="subtitle" style="margin-bottom: 0;">
+          A collaborative engineering project focused on building a 150% scale e-NABLE Phoenix Hand,
+          evaluating open-source documentation, improving assembly guidance, and reflecting on inclusive design.
+        </p>
+
+        <div class="meta-row">
+          <span class="meta-pill">Assistive Tech</span>
+          <span class="meta-pill">3D Printing</span>
+          <span class="meta-pill">Documentation Literacy</span>
+          <span class="meta-pill">Inclusive Design</span>
+          <span class="meta-pill">Open Source</span>
+        </div>
+
+        <div class="project-actions">
+          <a class="action-primary" href="#">
+            <i class="fas fa-link"></i> Documentation
+          </a>
+
+          <a class="action-secondary" href="#">
+            <i class="fas fa-file"></i> Reflection / Writeup
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-grid">
+      <div class="panel">
+        <h2>Project Overview</h2>
+        <p>
+          For this project, I explored the open-source assistive technology ecosystem through the e-NABLE Phoenix Hand.
+          The assignment combined fabrication, documentation analysis, usability thinking, and ethical reflection.
+          Instead of only printing a prosthetic hand, I also evaluated how open-source knowledge is shared,
+          where existing documentation falls short, and how design can better support accessibility and real-world use.
+        </p>
+
+        <h2>Part 1: Ecosystem Exploration</h2>
+        <p>
+          The open-source assistive technology ecosystem includes platforms like e-NABLE, NIH 3D Print Exchange, and Makers Making Change, each offering different strengths. 
+          E-NABLE focuses on prosthetic devices and provides a more direct, user-centered experience. 
+          NIH offers a structured repository but requires more navigation.
+          Makers Making Change includes a broader range of assistive tools beyond prosthetics. Exploring these platforms showed that while access to files is widespread, usability and organization vary significantly. A well-designed repository should prioritize task-based organization, ease of navigation, and beginner accessibility to ensure that users can effectively find, understand, and build assistive devices.
+        </p>
+
+        <h2>Documentation Evaluation</h2>
+        <p>
+          The documentation across platforms was useful but inconsistent. 
+          While most sources included basic instructions and materials, they often lacked clarity in critical steps such as string tensioning and alignment. 
+          Visual documentation was helpful but sometimes insufficient, especially for internal components. 
+          Troubleshooting guidance was minimal, leaving users to rely on trial and error. Accessibility was also limited, with few translations or simplified explanations for beginners. Overall, the documentation assumed prior technical knowledge, which creates a barrier for new users. Improving clarity, visual guidance, and troubleshooting would significantly enhance the usability of these open-source resources.
+        </p>
+
+        <h2>Part 2: 3D Printing Process</h2>
+        <p>
+          The prosthetic hand was printed using PLA on a Prusa Mini+, scaled to 150%.
+          While the external surfaces printed cleanly, the internal palm structure showed rough layering and stringing. 
+          This likely resulted from insufficient supports and minor temperature inconsistencies.
+          Printing complex geometries revealed how internal cavities are more difficult to produce accurately than external surfaces. 
+          This process highlighted the importance of optimizing print settings, especially for structures with hidden components. It also reinforced that digital models do not always translate perfectly into physical objects, requiring iteration and adjustment to achieve a functional and reliable print.
+        </p>
+
+        <h2>Part 3: Assembly & Functionality</h2>
+        <p>
+          The assembly process was challenging, particularly when routing and tensioning the tendon strings.
+          Small misalignments caused uneven finger movement, and the strings easily tangled inside the palm.
+          Despite these challenges, the prosthetic successfully demonstrated basic functionality.
+          The fingers closed when tension was applied, and the wrist-driven mechanism allowed controlled motion.
+          However, grip strength was limited, and consistency across fingers was difficult to maintain.
+          This showed that even when a design works conceptually, real-world performance depends heavily on precise assembly and material behavior.
+        </p>
+
+        <h2>Part 4: Limitations & Improvements</h2>
+        <p>
+          The prosthetic hand has several limitations, including uneven finger motion, limited grip strength, and internal friction within the palm structure. 
+          The bulky design also reduces precision, making fine motor tasks difficult. 
+          These issues stem from both design constraints and assembly challenges. 
+          To improve the device, I would redesign the string routing system to ensure consistent tension, reduce friction points within the palm, and refine the overall geometry for better ergonomics. Adding more intuitive assembly features could also improve usability. These improvements would make the prosthetic more reliable and accessible for users.
+        </p>
+
+        <h2>Part 5: Improving Documentation</h2>
+        <p>
+          The most difficult steps in the assembly process were tendon routing, finger alignment, and tension calibration. 
+          Existing documentation did not clearly explain these steps, especially for beginners. 
+          To improve this, I created clearer, step-by-step instructions supported by visual references. 
+          I focused on simplifying complex processes and highlighting common mistakes. 
+          By breaking down each step and showing correct configurations, I aimed to reduce ambiguity. 
+          This approach makes the documentation more accessible and helps users better understand both the process and the expected outcome.
+        </p>
+
+        <h2>Part 6: Peer Testing Reflection</h2>
+        <p>
+          Peer testing revealed that many assumptions I made during documentation were incorrect. 
+          Users struggled most with determining the correct string tension, as this was not clearly defined in the instructions. 
+          I initially believed this would be intuitive, but it required explicit explanation. 
+          Observing users interact with my documentation showed that clarity is not just about instructions, but also about expectations. 
+          Based on this feedback, I revised my documentation to include clearer visuals and more detailed explanations. 
+          This process emphasized the importance of testing documentation with real users.
+        </p>
+
+        <h2>Part 7: Design Concept</h2>
+        <p>
+          For the modification, I focused on enabling smartphone use. 
+          This task requires both stability and precision, making it a meaningful extension of the prosthetic’s capabilities. 
+          I designed a concept that allows the hand to hold a phone while still enabling interaction, such as tapping or swiping. 
+          The goal was to create a simple, lightweight attachment that enhances usability without restricting movement. 
+          This design reflects real-world needs, as smartphones are essential tools for communication and daily tasks.
+        </p>
+
+        <h2>Part 8: SIT Method & Iteration</h2>
+        <p>
+          I applied the Systematic Inventive Thinking principle of Task Unification by designing the prosthetic to both hold and interact with the phone. 
+          Instead of adding separate tools, the hand itself performs multiple functions. 
+          Initial testing showed that while the design improved stability, it reduced flexibility. 
+          This highlighted a tradeoff between control and mobility. Future iterations would focus on reducing bulk and improving ergonomic alignment. This process demonstrated how design is iterative and requires balancing competing constraints to achieve optimal functionality.
+        </p>
+
+        <h2>Part 9: Ethical Reflection</h2>
+        <p>
+          Open-source assistive technology provides significant benefits by making prosthetic designs more accessible and affordable. 
+          It allows individuals and communities to create solutions without relying on expensive medical systems. 
+          However, it also raises ethical concerns. Not everyone has access to 3D printers, materials, or technical knowledge, which limits who can actually benefit. 
+          Additionally, volunteer-driven models may lack consistency, quality control, and long-term support. This highlights the need for inclusive design approaches that consider not just access to information, but access to resources and usability.
+        </p>
+
+        <h2>Part 10: Contribution & Impact</h2>
+        <p>
+          As part of this project, I contributed improved documentation focusing on the most challenging assembly steps. 
+          By providing clearer visuals and troubleshooting guidance, my work helps future users better understand the process and avoid common mistakes. 
+          This contribution aligns with the collaborative nature of open-source communities, where knowledge is shared and continuously improved. Even small contributions can have a meaningful impact by making complex systems more accessible and easier to use.
+        </p>
+
+        <h2>Part 11: Capstone Bridge</h2>
+        <p>
+          This project revealed that one of the biggest challenges in assistive technology is not just design, but usability and accessibility. For my capstone, I want to focus on creating assistive solutions that are both functional and easy to understand. This includes improving documentation, simplifying assembly, and designing with real users in mind. By combining engineering with user-centered design, I aim to develop solutions that are practical, scalable, and inclusive. This direction builds on the lessons learned in this project and extends them into a broader impact.
+        </p>
+
+        <h2>Gallery</h2>
+        <div class="gallery">
+          <img src="Hand1.jpeg" alt="Phoenix Hand assembly process" />
+          <img src="Hand2.jpeg" alt="Phoenix Hand side view" />
+          <img src="Hand4.jpeg" alt="Interior palm structure" />
+          <img src="Hand44.jpeg" alt="Completed prosthetic hand" />
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Quick Facts</h2>
+        <p><strong>Course:</strong> ENGR11</p>
+        <p><strong>Project:</strong> e-NABLE Phoenix Hand</p>
+        <p><strong>Material:</strong> PLA</p>
+        <p><strong>Printer:</strong> Prusa Mini+</p>
+        <p><strong>Scale:</strong> 150%</p>
+
+        <h2>Key Requirements</h2>
+        <p>• Explore e-NABLE, NIH, and Makers Making Change</p>
+        <p>• 3D print and assemble the prosthetic hand</p>
+        <p>• Evaluate and improve existing documentation</p>
+        <p>• Design a task-specific modification</p>
+        <p>• Reflect on inclusive design and ethics</p>
+
+        <h2>What I Learned</h2>
+        <p>• Documentation quality strongly affects accessibility</p>
+        <p>• Small assembly errors can change mechanical performance</p>
+        <p>• Iteration matters in both design and communication</p>
+        <p>• Open-source access does not automatically mean equal usability</p>
+
+        <h2>Why It Matters</h2>
+        <p>
+          This project connected fabrication, documentation, and inclusive design into one complete workflow.
+          It showed that assistive technology is not only about building devices, but also about making them
+          understandable, usable, and accessible to the people who need them.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
