@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peltier Cloud Chamber Project</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    .project-page { padding: 110px 0 80px; }
+
+    .project-hero {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    body.dark-mode .project-hero { background: var(--dark-card); }
+
+    .project-hero-img { height: 340px; overflow: hidden; }
+
+    .project-hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(30%);
+    }
+
+    .project-hero-content { padding: 24px; }
+
+    .project-hero-content h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 12px 0 18px;
+    }
+
+    .meta-pill {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    body.dark-mode .meta-pill {
+      background: rgba(37, 99, 235, 0.2);
+      color: var(--accent);
+    }
+
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .project-actions a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 999px;
+      transition: var(--transition);
+    }
+
+    .action-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
+    }
+
+    .action-secondary {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      background: transparent;
+    }
+
+    .action-secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 900px) {
+      .content-grid { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    body.dark-mode .panel { background: var(--dark-card); }
+
+    .panel h2 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .panel h3 {
+      margin-top: 18px;
+      margin-bottom: 8px;
+      color: var(--primary);
+      font-size: 1.05rem;
+    }
+
+    body.dark-mode .panel h2,
+    body.dark-mode .panel h3 { color: var(--dark-text); }
+
+    .panel p,
+    .panel li {
+      color: var(--text-light);
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    body.dark-mode .panel p,
+    body.dark-mode .panel li { color: var(--dark-text-light); }
+
+    ul {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      filter: grayscale(15%);
+      transition: var(--transition);
+    }
+
+    .gallery img:hover {
+      filter: grayscale(0%);
+      transform: scale(1.02);
+    }
+
+    .back-link {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      margin-top: 16px;
+    }
+
+    .back-link:hover { transform: translateX(-3px); }
+  </style>
+</head>
+
+<body>
+  <div class="container project-page">
+    <a class="back-link" href="index.html">
+      <i class="fas fa-arrow-left"></i> Back to Portfolio
+    </a>
+
+    <div class="project-hero">
+      <div class="project-hero-img">
+        <img src="cloudchamber-cover.png" alt="Peltier cloud chamber cover image" />
+      </div>
+
+      <div class="project-hero-content">
+        <h1>Peltier Cloud Chamber</h1>
+        <p class="subtitle" style="margin-bottom: 0;">
+          An educational physics project that uses thermoelectric cooling to make invisible charged particles visible through condensation trails.
+        </p>
+
+        <div class="meta-row">
+          <span class="meta-pill">Physics Education</span>
+          <span class="meta-pill">Peltier Cooling</span>
+          <span class="meta-pill">Particle Visualization</span>
+          <span class="meta-pill">STEM Outreach</span>
+          <span class="meta-pill">Cloud Chamber</span>
+        </div>
+
+        <div class="project-actions">
+          <a class="action-primary" href="#gallery">
+            <i class="fas fa-image"></i> View Gallery
+          </a>
+          <a class="action-secondary" href="#overview">
+            <i class="fas fa-file-alt"></i> Read Project
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-grid">
+      <div class="panel" id="overview">
+        <h2>Project Title</h2>
+        <p><strong>Peltier Cloud Chamber: Making Invisible Particle Physics Visible</strong></p>
+
+        <h2>Project Overview</h2>
+        <p>
+          The Peltier Cloud Chamber is an educational physics device designed to help students see something that is normally impossible to observe directly: the paths of charged particles moving through space. 
+          The project uses a temperature gradient created by Peltier coolers to form a supersaturated vapor inside a sealed chamber. 
+          When charged particles pass through this vapor, they ionize the air, creating condensation trails that appear as thin white streaks. 
+          These visible trails turn an abstract idea from particle physics into a real, observable phenomenon. 
+          The project connects engineering, physics, and education by building a system that is scientifically meaningful and visually engaging.
+        </p>
+
+        <h2>Problem Statement</h2>
+        <p>
+          Many important ideas in physics are difficult for students to connect with because they cannot be directly seen. 
+          Radiation, ionization, and particle motion are often taught as abstract concepts through equations or diagrams alone. 
+          This creates a gap between theory and experience. The Peltier Cloud Chamber addresses this problem by providing a compact, classroom-friendly way to visualize charged particles in real time.
+          Instead of only hearing that particles move through matter and interact with atoms, students can watch those interactions appear as visible streaks inside the chamber.
+        </p>
+
+        <h2>Goal of the Project</h2>
+        <p>
+          The main goal of this project is to create a safe, portable, and educational cloud chamber that uses Peltier elements instead of dry ice. 
+          The design aims to make particle physics more accessible in a classroom setting by offering a reusable device that demonstrates invisible radiation in a direct and memorable way. 
+          Beyond function, the project also aims to spark curiosity, encourage scientific questioning, and support deeper discussion about how matter, energy, and charged particles behave.
+        </p>
+
+        <h2>What the Device Does</h2>
+        <p>
+          The chamber forms a bridge between the invisible and the visible. 
+          It creates a supersaturated alcohol vapor environment in which charged particles leave behind visible trails.
+          This allows students to observe evidence of radiation directly. When the chamber is operating, students can see lines, streaks, and track patterns formed by particles passing through the vapor. 
+          These patterns become the starting point for questions about where the particles come from, why tracks look different, and what the chamber is revealing about the physical world.
+        </p>
+
+        <h2>How It Works</h2>
+        <p>
+          A diffusion cloud chamber works by maintaining a strong temperature gradient. 
+          The bottom plate is cooled significantly while the top remains warmer. 
+          Alcohol vapor inside the chamber moves downward and becomes supersaturated near the cold base. 
+          In this unstable layer, even a small disturbance can trigger condensation. When a charged particle passes through, it ionizes air molecules along its path. 
+          These ions act as condensation nuclei, so vapor condenses into tiny droplets that trace the particle’s motion. 
+          What would otherwise be an invisible event becomes a bright visible line.
+        </p>
+
+        <h2>Phase 1: Creating the Environment</h2>
+        <p>
+          The first phase of operation is the creation of the supersaturated vapor layer.
+          The chamber must maintain the right temperature difference so the vapor remains ready to condense.
+          This phase is essential because the chamber does not work simply by being cold; it works by creating the correct gradient between warm and cold regions.
+          That gradient creates a highly sensitive environment where passing charged particles can leave observable evidence.
+        </p>
+
+        <h2>Phase 2: Making Radiation Visible</h2>
+        <p>
+          In the second phase, the chamber begins to reveal particle tracks.
+          Thin white streaks appear as charged particles ionize the gas. 
+          These streaks represent the paths of particles moving through the chamber.
+          Some are short and thick, while others are long, thin, or sharply angled.
+          These differences help students see that particle interactions are not identical.
+          Each line suggests a different energy level, particle type, or direction of travel.
+          This is the stage where the physics becomes visually powerful.
+        </p>
+
+        <h2>Phase 3: Teaching and Interpretation</h2>
+        <p>
+          The project is not only about building a device but also about creating a learning experience. Once the tracks are visible, the chamber becomes a tool for explanation and discussion. Students can ask what the lines represent, why they differ, where the particles came from, and what conditions allowed them to appear. This makes the project more than a demonstration. It becomes a platform for inquiry-based learning, connecting observation to physics concepts such as ionization, radiation, energy transfer, and atomic interactions.
+        </p>
+
+        <h2>Educational Value</h2>
+        <p>
+          This project helps students connect prior knowledge in physics to something directly observable. Instead of only reading about charged particles, they see evidence of those particles in action. The chamber supports questions such as what the white lines are, why some tracks look thicker or longer, whether we are really seeing particles move, where these particles come from, and whether this is happening all the time even when we do not look. These questions naturally lead into discussions of cosmic rays, background radiation, ionization, and matter-energy interactions. The chamber therefore serves as both a demonstration tool and a conversation starter.
+        </p>
+
+        <h2>Why a Peltier-Based System</h2>
+        <p>
+          Traditional cloud chambers often rely on dry ice, which is effective but difficult to store, transport, and repeatedly use in a classroom. A Peltier-based system offers a more reusable and controlled alternative. By using thermoelectric cooling, the chamber can be integrated into a compact demonstration system that is easier to operate indoors and potentially safer for repeated educational use. This makes it more practical for a school setting, especially for demonstrations that need to be repeated for multiple groups of students.
+        </p>
+
+        <h2>Major Components</h2>
+        <ul>
+          <li>Peltier modules for cooling</li>
+          <li>Heat sinks and cooling fans to remove excess heat</li>
+          <li>A conductive cold plate</li>
+          <li>A sealed transparent chamber</li>
+          <li>Alcohol source for vapor</li>
+          <li>Power supply and voltage control</li>
+          <li>Insulation and structural supports</li>
+          <li>LED lighting for track visibility</li>
+          <li>Optional temperature monitoring</li>
+        </ul>
+        <p>
+          Each component contributes to either thermal control, visibility, or structural stability. Together, they create the conditions needed for particle tracks to appear clearly.
+        </p>
+
+        <h2>Safety and Misconceptions</h2>
+        <p>
+          A major educational responsibility of this project is explaining safety and correcting misconceptions. Students may associate the word radiation with only dangerous or catastrophic events, especially because of images tied to nuclear plants or weapons. This chamber helps show that some forms of radiation are naturally present in our environment and can be studied safely in controlled conditions. The project also requires safe handling of electricity, strong temperature differences, and alcohol vapor. Clear explanation is essential so students understand both the scientific value and the practical safety measures involved.
+        </p>
+
+        <h2>Further Learning Opportunities</h2>
+        <p>
+          The cloud chamber can also lead into broader topics in physics and engineering. Students can compare particle tracks to other forms of visualization, such as contrails, nuclear emulsions, or scattering experiments. The project can open discussion about Rutherford scattering, ionization, Lorentz force, cosmic rays, and detector design. It can also connect classroom physics to real scientific research by showing that many advanced discoveries begin with the ability to detect and visualize what cannot be seen directly.
+        </p>
+
+        <h2>Design Strengths</h2>
+        <ul>
+          <li>It is visually compelling</li>
+          <li>It connects engineering to science education</li>
+          <li>It transforms an abstract concept into a physical experience</li>
+          <li>It encourages curiosity and questions</li>
+          <li>It has potential for repeated classroom use</li>
+          <li>It supports both demonstration and deeper conceptual learning</li>
+        </ul>
+
+        <h2>Challenges</h2>
+        <ul>
+          <li>Achieving low enough temperatures with Peltier modules</li>
+          <li>Managing heat dissipation on the hot side</li>
+          <li>Maintaining a stable temperature gradient</li>
+          <li>Preventing condensation in the wrong places</li>
+          <li>Making the system portable and durable</li>
+          <li>Balancing educational value with technical complexity</li>
+          <li>Ensuring safe and reliable classroom operation</li>
+        </ul>
+
+        <h2>Future Improvements</h2>
+        <ul>
+          <li>Better insulation for stronger cooling performance</li>
+          <li>Improved lighting for clearer track visibility</li>
+          <li>Built-in sensors for temperature and humidity</li>
+          <li>A display showing current chamber conditions</li>
+          <li>A more compact and polished enclosure</li>
+          <li>Modular educational panels or explanations</li>
+          <li>A comparison mode showing different particle track types</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          The Peltier Cloud Chamber is a project that makes invisible particle physics visible in a way that is memorable, educational, and engaging.
+          By using thermoelectric cooling to create a supersaturated vapor environment, the chamber allows students to see evidence of charged particles moving through space.
+          It transforms a normally abstract scientific idea into a direct visual experience. More than just a device, it is a teaching tool that connects engineering design, thermal systems, and particle physics into one meaningful project.
+          Its value lies not only in what it shows, but in the curiosity and understanding it can inspire.
+        </p>
+
+        <h2 id="gallery">Gallery</h2>
+        <div class="gallery">
+          <img src="cloudchamber1.png" alt="Cloud chamber setup" />
+          <img src="cloudchamber2.png" alt="Particle track image" />
+          <img src="cloudchamber3.png" alt="Understanding the science slide" />
+          <img src="cloudchamber4.png" alt="Safety and misconceptions slide" />
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Quick Facts</h2>
+        <p><strong>Project Type:</strong> Educational physics device</p>
+        <p><strong>Main System:</strong> Peltier-based diffusion cloud chamber</p>
+        <p><strong>Purpose:</strong> Visualize charged particle tracks</p>
+        <p><strong>Core Concepts:</strong> Ionization, condensation, radiation, temperature gradients</p>
+        <p><strong>Audience:</strong> Students and classroom demonstrations</p>
+
+        <h2>What It Teaches</h2>
+        <p>• Invisible particle motion can be made visible</p>
+        <p>• Engineering design supports scientific understanding</p>
+        <p>• Radiation can be studied safely in controlled settings</p>
+        <p>• Observation can lead to deeper questions in physics</p>
+
+        <h2>Why It Matters</h2>
+        <p>
+          This project bridges physics, engineering, and education by turning an invisible process into a real visual experience. 
+          It helps students move from abstract ideas to direct observation.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
