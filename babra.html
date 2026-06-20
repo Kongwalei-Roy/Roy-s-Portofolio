@@ -49,7 +49,6 @@
     opacity:0.85;
   }
 
-  /* ---------- Ambient starfield ---------- */
   #stars-canvas{
     position:fixed; inset:0; width:100%; height:100%;
     z-index:0; pointer-events:none;
@@ -65,7 +64,6 @@
 
   main{position:relative; z-index:1;}
 
-  /* ---------- Floating petals/sparkles ---------- */
   .petal-layer{ position:fixed; inset:0; z-index:2; pointer-events:none; overflow:hidden; }
   .petal{
     position:absolute; top:-5%;
@@ -82,7 +80,6 @@
     100%{ transform: translateY(110vh) translateX(var(--drift-x,40px)) rotate(360deg); opacity:0; }
   }
 
-  /* ---------- Section base ---------- */
   section{
     position:relative;
     min-height:100vh;
@@ -108,7 +105,6 @@
     letter-spacing: 0.5em;
   }
 
-  /* ================= HERO ================= */
   #hero{
     min-height:100vh;
   }
@@ -182,6 +178,9 @@
     text-transform:uppercase;
     opacity:0;
     animation: fadeUp 1.2s ease forwards 1.3s;
+    background:none;
+    border:none;
+    cursor:pointer;
   }
   .scroll-cue .stem{
     width:1px; height:38px;
@@ -193,7 +192,6 @@
     50%{ opacity:1; transform: scaleY(1); }
   }
 
-  /* ================= STORY / TIMELINE ================= */
   #story{ padding-top: 5rem; padding-bottom:5rem; }
 
   .section-head{ max-width:640px; margin-bottom: 3.6rem; }
@@ -232,6 +230,7 @@
   .t-item{
     position:relative;
     display:flex;
+    flex-direction:column;
     margin-bottom: 3.4rem;
     text-align:left;
     padding-left: 64px;
@@ -279,7 +278,6 @@
     line-height:1.65;
   }
 
-  /* ================= GALLERY ================= */
   #gallery{ padding-top:5rem; padding-bottom:5rem; }
 
   .gallery-grid{
@@ -313,6 +311,7 @@
     transition: opacity 0.6s ease;
   }
   .frame img.loaded{ opacity:1; }
+  .frame img.loaded + .frame-placeholder{ opacity:0; pointer-events:none; }
 
   .frame-placeholder{
     position:absolute; inset:0;
@@ -321,6 +320,7 @@
     color: var(--ink-dim);
     padding:1rem;
     text-align:center;
+    transition: opacity 0.4s ease;
   }
   .frame-placeholder .icon{
     width:34px; height:34px;
@@ -350,8 +350,12 @@
     letter-spacing:0.04em;
     max-width:520px;
   }
+  .gallery-note code{
+    color: var(--gold-bright);
+    font-family: monospace;
+    font-size:0.85rem;
+  }
 
-  /* ================= LETTER ================= */
   #letter{
     padding-top:5rem; padding-bottom:6rem;
     background: radial-gradient(ellipse 900px 500px at 50% 0%, rgba(74,31,99,0.28), transparent 65%);
@@ -391,11 +395,12 @@
     display:flex; align-items:center; justify-content:center;
     box-shadow: 0 6px 16px rgba(0,0,0,0.5), inset 0 0 0 2px rgba(255,255,255,0.08);
     cursor:pointer;
-    transition: transform 0.4s ease;
+    transition: transform 0.4s ease, opacity 0.4s ease;
     font-family:'Playfair Display', serif;
     font-style:italic;
     font-size:1.3rem;
     color: rgba(255,255,255,0.85);
+    border: none;
   }
   .wax-seal:hover{ transform: scale(1.06) rotate(-3deg); }
   .wax-seal:active{ transform: scale(0.96); }
@@ -442,7 +447,6 @@
     text-align:right;
   }
 
-  /* ================= WISH ================= */
   #wish{ padding-top:5rem; }
 
   .wish-title{
@@ -457,6 +461,8 @@
     display:flex; flex-direction:column; align-items:center;
     cursor:pointer;
     user-select:none;
+    background:none;
+    border:none;
   }
 
   .flame{
@@ -515,13 +521,34 @@
     opacity:0.6;
   }
 
-  /* confetti burst canvas for candle wish */
   #burst-canvas{
     position:fixed; inset:0; z-index:50; pointer-events:none;
   }
+
+  a.back-home{
+    position:fixed;
+    top:18px; left:18px;
+    z-index:60;
+    display:flex; align-items:center; gap:6px;
+    font-family:'Marcellus', serif;
+    font-size:0.7rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color: var(--gold-bright);
+    text-decoration:none;
+    background: rgba(14,10,28,0.55);
+    border: 1px solid var(--line);
+    padding:8px 14px;
+    border-radius:999px;
+    backdrop-filter: blur(4px);
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  a.back-home:hover{ background: rgba(42,18,64,0.7); transform: translateY(-1px); }
 </style>
 </head>
 <body>
+
+<a href="babra-birthday-card-v2.html" class="back-home" aria-label="Back to card">← Back</a>
 
 <canvas id="stars-canvas"></canvas>
 <div class="bg-glow"></div>
@@ -530,21 +557,19 @@
 
 <main>
 
-  <!-- ================= HERO ================= -->
   <section id="hero">
     <div class="hero-frame">
       <div class="hero-kicker">A tale four years in the telling</div>
       <h1 class="hero-title">Happy Birthday,<br>Babra</h1>
       <p class="hero-sub">Today, the candles are for you. The years are for us.</p>
       <p class="hero-meta">Celebrating her day &amp; our 4th anniversary, together</p>
-      <div class="scroll-cue">
+      <button class="scroll-cue" id="scroll-cue" aria-label="Scroll to story">
         <span>Begin the story</span>
         <span class="stem"></span>
-      </div>
+      </button>
     </div>
   </section>
 
-  <!-- ================= STORY ================= -->
   <section id="story">
     <div class="section-head">
       <p class="eyebrow">Our Story</p>
@@ -555,47 +580,75 @@
     <div class="timeline" id="timeline">
       <div class="t-item">
         <div class="t-dot"></div>
-        <div class="t-year">How it began</div>
-        <h3>Introduced by friends</h3>
-        <p>It started the way the best things often do — through people who already loved us both. A room full of familiar faces, and somehow she was the one I kept finding my way back to. I didn't know yet that I'd just met the person I'd spend the next four years falling for.</p>
+        <div class="t-year">The Weight of You</div>
+        <h3>I</h3>
+        <p>I have learned the strange arithmetic of you 
+           how someone can take up so little space
+           in a room, and so much in a life.
+           You did not arrive with thunder.
+           You arrived the way light arrives in early spring:
+            unannounced, unhurried and suddenly everything was easier to bear.</p>
       </div>
 
       <div class="t-item right">
         <div class="t-dot"></div>
-        <div class="t-year">The first date</div>
-        <h3>Where it became "us"</h3>
-        <p>Replace this with the real story of your first date — where you went, what you talked about, the moment you both knew this was something. Specifics are what make a memory feel alive: the song playing, the joke that broke the ice, the walk home that lasted too long on purpose.</p>
-      </div>
+        <div class="t-year">The Weight of You</div>
+        <h3>II</h3>
+        <p>I have tried to name what you do to ordinary time
+           and failed every time 
+           the closest I can come is this:
+           days bend toward you.
+           Even the dull ones.
+           Even the hard ones.
+           They bend, the way a field
+           bends toward whatever sun it's given.
+           People will tell you love is fireworks.
+           I think they've never loved anyone
+           patient enough to become a season instead 
+           seven years of weather, all of it worth standing in.</div>
 
       <div class="t-item">
         <div class="t-dot"></div>
-        <div class="t-year">A year that tested us</div>
-        <h3>The hard days we got through</h3>
-        <p>Add the chapter where things weren't easy — and she showed up anyway. Whatever it was, this is the place to name how she carried you, or how you carried each other, and came out closer for it.</p>
+        <div class="t-year">The Weight of You</div>
+        <h3>III</h3>
+        <p>So here is what I know, plainly, without ornament:
+
+        you are the kindest accident
+        that ever happened to my life.
+        Not chosen by some grand design —
+        just two people, a room, a beginning,
+        and then everything after
+        that I would choose again,
+        on purpose, every time.
+        Today the world turns one year further
+        around the fact of you.
+        I hope it's gentle.
+        I hope it gives you back
+        even a fraction of what you've given everyone
+        who's ever been lucky enough to know you.</p>
       </div>
 
       <div class="t-item right">
         <div class="t-dot"></div>
-        <div class="t-year">Four years later</div>
-        <h3>Still choosing each other</h3>
-        <p>And now — four years in, one more birthday candle lit, one more year of proof that what started in a room full of friends turned into the steadiest, warmest thing in my life. Here's to the years still ahead.</p>
+        <div class="t-year">The Weight of You</div>
+        <h3>IV</h3>
+        <p>And if there is any magic left to me,
+          let it be this small, impossible thing 
+          that for one hour today,
+          you could stand outside yourself
+          and see what the rest of us see
+          when we look at you.
+          You would never doubt your worth again.</p>
       </div>
     </div>
   </section>
 
-  <!-- ================= GALLERY ================= -->
   <section id="gallery">
     <div class="section-head">
       <p class="eyebrow">In Pictures</p>
       <h2>Moments worth keeping</h2>
-      <p>Eight frames are waiting for your photos. Each one will light up the moment you add an image.</p>
     </div>
 
-    <div class="gallery-grid" id="gallery-grid"></div>
-    <p class="gallery-note">To add a photo: replace the placeholder <code>src</code> in each <code>&lt;img&gt;</code> tag inside the <code>gallery-grid</code> in the code, or drop your image files into the same folder and point the src to the filename.</p>
-  </section>
-
-  <!-- ================= LETTER ================= -->
   <section id="letter">
     <div class="section-head">
       <p class="eyebrow">A Letter, Sealed</p>
@@ -604,7 +657,7 @@
 
     <div class="letter-box">
       <div class="seal-wrap">
-        <div class="wax-seal" id="wax-seal" role="button" tabindex="0" aria-label="Break the seal to read the letter">B</div>
+        <button class="wax-seal" id="wax-seal" aria-label="Break the seal to read the letter">B</button>
         <div class="seal-hint" id="seal-hint">Break the seal to read</div>
       </div>
 
@@ -612,12 +665,12 @@
         <div class="letter-inner">
           <p class="letter-greeting">Dear Babra,</p>
 
-          <p>There are some people who enter our lives so quietly that we don't realize, in that moment, that they are about to become part of our favorite story.Three years ago, I met you through a game. If someone had told me then that a simple conversation would become a friendship, that friendship would become a bond, and that bond would become one of the most meaningful parts of my life, I would never have believed them.
-             Yet here we are.Somewhere between late-night conversations, shared laughter, reading It Ends With Us together, and learning the little details that make you who you are, you became someone incredibly special to me.You became someone I looked forward to talking to.Someone whose messages could brighten an ordinary day.Someone whose presence felt like home, even from miles away.
+          <p>There are some people who enter our lives so quietly that we don't realize, in that moment, that they are about to become part of our favorite story. Three years ago, I met you through a game. If someone had told me then that a simple conversation would become a friendship, that friendship would become a bond, and that bond would become one of the most meaningful parts of my life, I would never have believed them.
+             Yet here we are. Somewhere between late-night conversations, shared laughter, reading It Ends With Us together, and learning the little details that make you who you are, you became someone incredibly special to me. You became someone I looked forward to talking to. Someone whose messages could brighten an ordinary day. Someone whose presence felt like home, even from miles away.
            </p>
 
-          <p>When I met you for the first time, I remember looking at you and feeling as though reality had somehow become more beautiful than imagination. And when we met again for tea, watching you smile across the table is a memory that time has never managed to steal from me.Then life carried me across an ocean to Boston.
-            But distance has a strange way of revealing what truly matters.No matter how many miles separated us, no matter how much time passed, you remained a constant thought in my heart. There was always a part of me that hoped our paths would cross again.
+          <p>When I met you for the first time, I remember looking at you and feeling as though reality had somehow become more beautiful than imagination. And when we met again for tea, watching you smile across the table is a memory that time has never managed to steal from me. Then life carried me across an ocean to Boston.
+            But distance has a strange way of revealing what truly matters. No matter how many miles separated us, no matter how much time passed, you remained a constant thought in my heart. There was always a part of me that hoped our paths would cross again.
             And when I saw you again recently, after all that time, it felt like opening a book I had never truly finished reading. The world around us seemed quieter. For a moment, all I could think was how happy I was that you were standing there in front of me.
             Today is a special day.
             It is your birthday.
@@ -625,7 +678,7 @@
             Out of all the days in the year, it amazes me that the day we celebrate you is also a day that reminds me how grateful I am that you came into my life at all.
            </p>
 
-          <p>Babra, if there is one thing I hope you always know, it is this:You have brought so much joy into my life.
+          <p>Babra, if there is one thing I hope you always know, it is this: you have brought so much joy into my life.
              More than you realize.
             You have given me memories I cherish, laughter I still remember, stories I still revisit, and moments that continue to make my heart smile years later.
             You have a way of making life feel lighter.
@@ -656,8 +709,8 @@
           <p>Thank you for being one of the most wonderful people I have ever known.
              Thank you for every conversation, every memory, every laugh, and every moment.
              Most of all, thank you for being you.
-             Happy Birthday,My Queen, Babra Jerotich.
-            If I could give you one gift today, it would be the ability to see yourself through my eyes—so you could understand just how special you truly are.
+             Happy Birthday, my queen, Babra Jerotich.
+            If I could give you one gift today, it would be the ability to see yourself through my eyes — so you could understand just how special you truly are.
           </p>
 
           <p class="letter-sign">Forever yours, Roy</p>
@@ -666,28 +719,26 @@
     </div>
   </section>
 
-  <!-- ================= WISH ================= -->
   <section id="wish">
     <p class="eyebrow">Make a Wish</p>
     <h2 class="wish-title">One candle for the year behind you,<br>one for all the years ahead.</h2>
 
-    <div class="candle-wrap" id="candle" role="button" tabindex="0" aria-label="Blow out the candle and make a wish">
+    <button class="candle-wrap" id="candle" aria-label="Blow out the candle and make a wish">
       <div class="flame" id="flame"></div>
       <div class="candle-stick"></div>
-    </div>
+    </button>
     <div class="candle-label" id="candle-label">Tap the flame to make your wish</div>
-    <div class="wish-message" id="wish-message">Wish made. May it find its way to you. ✨</div>
+    <div class="wish-message" id="wish-message">Wish made. May it find its way to you.</div>
   </section>
 
   <footer>
-  Some voices fade when the room empties.Yours stays in the walls.
+  Some voices fade when the room empties. Yours stays in the walls.
   </footer>
 
 </main>
 
 <script>
 (function(){
-  // ---------------- Starfield ----------------
   const starCanvas = document.getElementById('stars-canvas');
   const sctx = starCanvas.getContext('2d');
   let stars = [];
@@ -726,7 +777,6 @@
   requestAnimationFrame(drawStars);
   window.addEventListener('resize', () => { resizeStars(); if(reduceMotion){ drawStars(0); } });
 
-  // ---------------- Floating petals/sparkles ----------------
   const petalLayer = document.getElementById('petal-layer');
   const glyphs = ['✦','✧','❀','✿','✶'];
   function spawnPetal(){
@@ -749,7 +799,10 @@
     setInterval(spawnPetal, 2200);
   }
 
-  // ---------------- Timeline reveal on scroll ----------------
+  document.getElementById('scroll-cue').addEventListener('click', () => {
+    document.getElementById('story').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+  });
+
   const tItems = document.querySelectorAll('.t-item');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -761,24 +814,27 @@
   }, { threshold: 0.2 });
   tItems.forEach(item => io.observe(item));
 
-  // ---------------- Gallery placeholders ----------------
+  // To add your own photos: put the image files in the same folder as this
+  // HTML file, then set each "src" below to match the filename exactly.
+  // Leave src empty ('') to keep the placeholder frame.
   const galleryGrid = document.getElementById('gallery-grid');
   const photoLabels = [
-  { label: 'Where it began', src: 'photo1.jpg' },
-  { label: 'A ate', src: 'photo2.jpeg' },
-  { label: 'A quiet Sunday', src: 'photo3.jpeg' },
-  { label: 'An adventure', src: 'photo4.jpeg' },
-  { label: 'Just us', src: 'photo5.jpeg' },
-  { label: 'You', src: 'photo6.jpeg' },
-  { label: 'Last day', src: 'photo7.jpeg' },
-  { label: 'Proud of Her', src: 'photo8.jpg' }
-  { label: 'Today', src: 'photo9.jpg' }
+    { label: 'Where it began',   src: 'photo1.jpg'  },
+    { label: 'A date',           src: 'photo2.jpeg' },
+    { label: 'A quiet Sunday',   src: 'photo3.jpeg' },
+    { label: 'An adventure',     src: 'photo4.jpeg' },
+    { label: 'Just us',          src: 'photo5.jpeg' },
+    { label: 'You',              src: 'photo6.jpeg' },
+    { label: 'Last day',         src: 'photo7.jpeg' },
+    { label: 'Proud of her',     src: 'photo8.jpg'  },
+    { label: 'Today',            src: 'photo9.jpg'  }
   ];
-  photoLabels.forEach((label, i) => {
+
+  photoLabels.forEach(({ label, src }) => {
     const frame = document.createElement('div');
     frame.className = 'frame';
     frame.innerHTML = `
-      <img src="" alt="${label} — add your photo here" data-fallback="1">
+      <img alt="${label}" data-fallback="1">
       <div class="frame-placeholder">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
           <rect x="3" y="5" width="18" height="14" rx="1.5"/>
@@ -794,10 +850,14 @@
     img.addEventListener('load', () => {
       if(img.getAttribute('src')){ img.classList.add('loaded'); }
     });
+    img.addEventListener('error', () => {
+      img.classList.remove('loaded');
+      img.removeAttribute('src');
+    });
+    if(src){ img.src = src; }
     galleryGrid.appendChild(frame);
   });
 
-  // ---------------- Wax seal / letter reveal ----------------
   const seal = document.getElementById('wax-seal');
   const letterContent = document.getElementById('letter-content');
   const sealHint = document.getElementById('seal-hint');
@@ -816,9 +876,7 @@
   }
 
   seal.addEventListener('click', openLetter);
-  seal.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openLetter(); } });
 
-  // ---------------- Candle wish + burst ----------------
   const candle = document.getElementById('candle');
   const flame = document.getElementById('flame');
   const candleLabel = document.getElementById('candle-label');
@@ -885,7 +943,6 @@
   }
 
   candle.addEventListener('click', blowCandle);
-  candle.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); blowCandle(); } });
 
 })();
 </script>
