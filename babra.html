@@ -764,8 +764,15 @@
   // ---------------- Gallery placeholders ----------------
   const galleryGrid = document.getElementById('gallery-grid');
   const photoLabels = [
-    'Where it began', 'First date', 'A quiet Sunday', 'An adventure',
-    'Just us', 'A celebration', 'Through the hard days', 'Today'
+  { label: 'Where it began', src: 'photo1.jpg' },
+  { label: 'A ate', src: 'photo2.jpeg' },
+  { label: 'A quiet Sunday', src: 'photo3.jpeg' },
+  { label: 'An adventure', src: 'photo4.jpeg' },
+  { label: 'Just us', src: 'photo5.jpeg' },
+  { label: 'You', src: 'photo6.jpeg' },
+  { label: 'Last day', src: 'photo7.jpeg' },
+  { label: 'Proud of Her', src: 'photo8.jpg' }
+  { label: 'Today', src: 'photo9.jpg' }
   ];
   photoLabels.forEach((label, i) => {
     const frame = document.createElement('div');
