@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Babra — Four Years of Magic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Marcellus&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#f3ecdf;
+    --ink-dim:#cdbfae;
+    --night:#0e0a1c;
+    --night-deep:#070512;
+    --plum:#2a1240;
+    --plum-light:#4a1f63;
+    --emerald:#0f3d34;
+    --emerald-light:#1d6e57;
+    --gold:#d8af5f;
+    --gold-bright:#f2cd7e;
+    --rose:#c2466b;
+    --line: rgba(216,175,95,0.28);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background: var(--night);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  h1,h2,h3{ font-family:'Playfair Display', serif; font-weight:600; letter-spacing:0.01em; }
+
+  .eyebrow{
+    font-family:'Marcellus', serif;
+    text-transform:uppercase;
+    letter-spacing:0.32em;
+    font-size:0.72rem;
+    color: var(--gold);
+    opacity:0.85;
+  }
+
+  /* ---------- Ambient starfield ---------- */
+  #stars-canvas{
+    position:fixed; inset:0; width:100%; height:100%;
+    z-index:0; pointer-events:none;
+  }
+
+  .bg-glow{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse 800px 500px at 15% 10%, rgba(74,31,99,0.35), transparent 60%),
+      radial-gradient(ellipse 700px 600px at 85% 30%, rgba(15,61,52,0.30), transparent 60%),
+      radial-gradient(ellipse 900px 700px at 50% 90%, rgba(194,70,107,0.18), transparent 60%);
+  }
+
+  main{position:relative; z-index:1;}
+
+  /* ---------- Floating petals/sparkles ---------- */
+  .petal-layer{ position:fixed; inset:0; z-index:2; pointer-events:none; overflow:hidden; }
+  .petal{
+    position:absolute; top:-5%;
+    font-size: 1rem;
+    color: var(--gold-bright);
+    opacity:0.8;
+    filter: drop-shadow(0 0 6px rgba(242,205,126,0.6));
+    animation: drift linear infinite;
+  }
+  @keyframes drift{
+    0%{ transform: translateY(-10vh) translateX(0) rotate(0deg); opacity:0; }
+    8%{ opacity:0.85; }
+    92%{ opacity:0.6; }
+    100%{ transform: translateY(110vh) translateX(var(--drift-x,40px)) rotate(360deg); opacity:0; }
+  }
+
+  /* ---------- Section base ---------- */
+  section{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding: 6rem 1.5rem;
+    text-align:center;
+  }
+
+  .divider{
+    width:1px; height:90px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    margin: 0 auto;
+    opacity:0.6;
+  }
+
+  .ornament{
+    font-size:1.4rem;
+    color: var(--gold);
+    margin: 1.2rem 0;
+    letter-spacing: 0.5em;
+  }
+
+  /* ================= HERO ================= */
+  #hero{
+    min-height:100vh;
+  }
+
+  .hero-frame{
+    position:relative;
+    max-width: 760px;
+  }
+
+  .hero-kicker{
+    font-family:'Marcellus', serif;
+    letter-spacing:0.4em;
+    text-transform:uppercase;
+    font-size:0.78rem;
+    color: var(--gold-bright);
+    margin-bottom: 1.6rem;
+    opacity:0;
+    animation: fadeUp 1.2s ease forwards 0.2s;
+  }
+
+  .hero-title{
+    font-size: clamp(2.8rem, 9vw, 6rem);
+    line-height:1.04;
+    font-style:italic;
+    background: linear-gradient(120deg, var(--gold-bright), var(--gold) 40%, var(--rose) 75%, var(--gold-bright));
+    background-size: 200% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation: shimmerText 6s ease-in-out infinite, fadeUp 1.2s ease forwards 0.45s;
+    opacity:0;
+  }
+
+  @keyframes shimmerText{
+    0%,100%{ background-position: 0% center; }
+    50%{ background-position: 100% center; }
+  }
+
+  .hero-sub{
+    margin-top: 1.6rem;
+    font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+    color: var(--ink-dim);
+    font-weight:400;
+    opacity:0;
+    animation: fadeUp 1.2s ease forwards 0.75s;
+  }
+
+  .hero-meta{
+    margin-top:0.6rem;
+    font-family:'Marcellus', serif;
+    font-size:0.95rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color: var(--gold);
+    opacity:0;
+    animation: fadeUp 1.2s ease forwards 0.95s;
+  }
+
+  @keyframes fadeUp{
+    from{ opacity:0; transform: translateY(22px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  .scroll-cue{
+    margin-top: 3.4rem;
+    display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+    color: var(--ink-dim);
+    font-family:'Marcellus', serif;
+    font-size:0.72rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    opacity:0;
+    animation: fadeUp 1.2s ease forwards 1.3s;
+  }
+  .scroll-cue .stem{
+    width:1px; height:38px;
+    background: var(--gold);
+    animation: pulseStem 2s ease-in-out infinite;
+  }
+  @keyframes pulseStem{
+    0%,100%{ opacity:0.3; transform: scaleY(0.8); }
+    50%{ opacity:1; transform: scaleY(1); }
+  }
+
+  /* ================= STORY / TIMELINE ================= */
+  #story{ padding-top: 5rem; padding-bottom:5rem; }
+
+  .section-head{ max-width:640px; margin-bottom: 3.6rem; }
+  .section-head h2{
+    font-size: clamp(2.1rem, 5vw, 3.1rem);
+    margin-top:0.8rem;
+    font-style:italic;
+    color: var(--ink);
+  }
+  .section-head p{
+    margin-top:1rem;
+    color: var(--ink-dim);
+    font-size:1.15rem;
+    line-height:1.6;
+  }
+
+  .timeline{
+    position:relative;
+    max-width: 760px;
+    width:100%;
+    margin-top: 1rem;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left: 28px;
+    top: 6px;
+    bottom: 6px;
+    width:1px;
+    background: linear-gradient(to bottom, transparent, var(--line) 8%, var(--line) 92%, transparent);
+  }
+  @media(min-width:720px){
+    .timeline::before{ left:50%; transform:translateX(-50%); }
+  }
+
+  .t-item{
+    position:relative;
+    display:flex;
+    margin-bottom: 3.4rem;
+    text-align:left;
+    padding-left: 64px;
+    opacity:0;
+    transform: translateY(28px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .t-item.in-view{ opacity:1; transform:translateY(0); }
+
+  @media(min-width:720px){
+    .t-item{ width:50%; padding-left:0; padding-right: 56px; text-align:right; }
+    .t-item.right{ margin-left:50%; padding-right:0; padding-left:56px; text-align:left; }
+  }
+
+  .t-dot{
+    position:absolute;
+    left: 20px; top: 4px;
+    width:17px; height:17px;
+    border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, var(--gold-bright), var(--gold) 60%, var(--rose) 130%);
+    box-shadow: 0 0 0 4px var(--night), 0 0 18px 2px rgba(242,205,126,0.55);
+  }
+  @media(min-width:720px){
+    .t-item .t-dot{ left:auto; right:-9px; }
+    .t-item.right .t-dot{ right:auto; left:-9px; }
+  }
+
+  .t-year{
+    font-family:'Marcellus', serif;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    font-size:0.74rem;
+    color: var(--gold);
+  }
+  .t-item h3{
+    font-size:1.5rem;
+    margin-top:0.5rem;
+    font-style:italic;
+    color: var(--ink);
+  }
+  .t-item p{
+    margin-top:0.6rem;
+    color: var(--ink-dim);
+    font-size:1.08rem;
+    line-height:1.65;
+  }
+
+  /* ================= GALLERY ================= */
+  #gallery{ padding-top:5rem; padding-bottom:5rem; }
+
+  .gallery-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.4rem;
+    max-width: 1040px;
+    width:100%;
+    margin-top:1rem;
+  }
+
+  .frame{
+    position:relative;
+    aspect-ratio: 4/5;
+    border-radius: 4px;
+    overflow:hidden;
+    background:
+      linear-gradient(160deg, var(--plum-light), var(--night) 70%);
+    border: 1px solid var(--line);
+    box-shadow: 0 18px 40px -16px rgba(0,0,0,0.7);
+    cursor:pointer;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+  }
+  .frame:hover{
+    transform: translateY(-6px) rotate(-0.4deg);
+    box-shadow: 0 26px 54px -16px rgba(0,0,0,0.8), 0 0 0 1px var(--gold);
+  }
+  .frame img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    opacity:0;
+    transition: opacity 0.6s ease;
+  }
+  .frame img.loaded{ opacity:1; }
+
+  .frame-placeholder{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:0.7rem;
+    color: var(--ink-dim);
+    padding:1rem;
+    text-align:center;
+  }
+  .frame-placeholder .icon{
+    width:34px; height:34px;
+    opacity:0.55;
+  }
+  .frame-placeholder span{
+    font-family:'Marcellus', serif;
+    font-size:0.7rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    opacity:0.65;
+  }
+  .frame-corner{
+    position:absolute; width:18px; height:18px;
+    border: 1px solid var(--gold);
+    opacity:0.55;
+    pointer-events:none;
+  }
+  .frame-corner.tl{ top:8px; left:8px; border-right:none; border-bottom:none; }
+  .frame-corner.br{ bottom:8px; right:8px; border-left:none; border-top:none; }
+
+  .gallery-note{
+    margin-top:2.2rem;
+    font-size:0.95rem;
+    color: var(--ink-dim);
+    font-family:'Marcellus', serif;
+    letter-spacing:0.04em;
+    max-width:520px;
+  }
+
+  /* ================= LETTER ================= */
+  #letter{
+    padding-top:5rem; padding-bottom:6rem;
+    background: radial-gradient(ellipse 900px 500px at 50% 0%, rgba(74,31,99,0.28), transparent 65%);
+  }
+
+  .letter-box{
+    max-width: 660px;
+    width:100%;
+    position:relative;
+    padding: 3.4rem 2.4rem;
+    background: linear-gradient(170deg, rgba(42,18,64,0.55), rgba(14,10,28,0.75));
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    backdrop-filter: blur(2px);
+  }
+  @media(min-width:640px){ .letter-box{ padding: 4rem 4rem; } }
+
+  .letter-box::before, .letter-box::after{
+    content:"❧";
+    position:absolute;
+    color: var(--gold);
+    font-size:1.4rem;
+    opacity:0.7;
+  }
+  .letter-box::before{ top:18px; left:18px; }
+  .letter-box::after{ bottom:18px; right:18px; transform: rotate(180deg); }
+
+  .seal-wrap{
+    display:flex; flex-direction:column; align-items:center;
+    margin-bottom: 1rem;
+  }
+
+  .wax-seal{
+    width:64px; height:64px;
+    border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, var(--rose), #7a1f3a 70%);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.5), inset 0 0 0 2px rgba(255,255,255,0.08);
+    cursor:pointer;
+    transition: transform 0.4s ease;
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:1.3rem;
+    color: rgba(255,255,255,0.85);
+  }
+  .wax-seal:hover{ transform: scale(1.06) rotate(-3deg); }
+  .wax-seal:active{ transform: scale(0.96); }
+
+  .seal-hint{
+    margin-top:0.8rem;
+    font-family:'Marcellus', serif;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color: var(--gold);
+    opacity:0.85;
+  }
+
+  .letter-content{
+    max-height:0;
+    overflow:hidden;
+    transition: max-height 1.4s ease;
+  }
+  .letter-content.open{ max-height: 3200px; }
+
+  .letter-inner{ padding-top: 2rem; }
+
+  .letter-greeting{
+    font-style:italic;
+    font-size:1.6rem;
+    color: var(--gold-bright);
+    margin-bottom:1.4rem;
+  }
+
+  .letter-inner p{
+    font-size: 1.18rem;
+    line-height:1.85;
+    color: var(--ink);
+    margin-bottom: 1.3rem;
+    text-align:left;
+  }
+
+  .letter-sign{
+    margin-top:1.6rem;
+    font-style:italic;
+    font-size:1.3rem;
+    color: var(--gold-bright);
+    text-align:right;
+  }
+
+  /* ================= WISH ================= */
+  #wish{ padding-top:5rem; }
+
+  .wish-title{
+    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    font-style:italic;
+    max-width:740px;
+    line-height:1.3;
+  }
+
+  .candle-wrap{
+    margin: 2.6rem 0 1.2rem;
+    display:flex; flex-direction:column; align-items:center;
+    cursor:pointer;
+    user-select:none;
+  }
+
+  .flame{
+    width:14px; height:22px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    background: radial-gradient(circle at 50% 70%, #fff6d8, var(--gold-bright) 40%, var(--rose) 100%);
+    box-shadow: 0 0 18px 6px rgba(242,205,126,0.55);
+    transform-origin: bottom center;
+    animation: flicker 2.4s ease-in-out infinite;
+  }
+  @keyframes flicker{
+    0%,100%{ transform: scaleY(1) rotate(-1deg); }
+    50%{ transform: scaleY(1.08) rotate(2deg); }
+  }
+  .flame.out{
+    animation:none;
+    opacity:0;
+    transition: opacity 0.4s ease;
+  }
+
+  .candle-stick{
+    width:14px; height:64px;
+    margin-top:-2px;
+    background: linear-gradient(180deg, var(--gold-bright), var(--gold) 60%, #9c7838);
+    border-radius:2px;
+  }
+
+  .candle-label{
+    margin-top:1rem;
+    font-family:'Marcellus', serif;
+    font-size:0.74rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color: var(--ink-dim);
+  }
+
+  .wish-message{
+    margin-top:1.6rem;
+    font-size:1.3rem;
+    font-style:italic;
+    color: var(--gold-bright);
+    min-height:1.6em;
+    opacity:0;
+    transition: opacity 0.8s ease;
+  }
+  .wish-message.show{ opacity:1; }
+
+  footer{
+    text-align:center;
+    padding: 3rem 1.5rem 4rem;
+    color: var(--ink-dim);
+    font-family:'Marcellus', serif;
+    font-size:0.78rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    opacity:0.6;
+  }
+
+  /* confetti burst canvas for candle wish */
+  #burst-canvas{
+    position:fixed; inset:0; z-index:50; pointer-events:none;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+<div class="bg-glow"></div>
+<div class="petal-layer" id="petal-layer"></div>
+<canvas id="burst-canvas"></canvas>
+
+<main>
+
+  <!-- ================= HERO ================= -->
+  <section id="hero">
+    <div class="hero-frame">
+      <div class="hero-kicker">A tale four years in the telling</div>
+      <h1 class="hero-title">Happy Birthday,<br>Babra</h1>
+      <p class="hero-sub">Today, the candles are for you. The years are for us.</p>
+      <p class="hero-meta">Celebrating her day &amp; our 4th anniversary, together</p>
+      <div class="scroll-cue">
+        <span>Begin the story</span>
+        <span class="stem"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STORY ================= -->
+  <section id="story">
+    <div class="section-head">
+      <p class="eyebrow">Our Story</p>
+      <h2>Four years, told in moments</h2>
+      <p>Edit the text in this timeline with your own memories — first date, an adventure, the hard days you carried together. The shape is ready; the rest is yours to fill in.</p>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-year">How it began</div>
+        <h3>Introduced by friends</h3>
+        <p>It started the way the best things often do — through people who already loved us both. A room full of familiar faces, and somehow she was the one I kept finding my way back to. I didn't know yet that I'd just met the person I'd spend the next four years falling for.</p>
+      </div>
+
+      <div class="t-item right">
+        <div class="t-dot"></div>
+        <div class="t-year">The first date</div>
+        <h3>Where it became "us"</h3>
+        <p>Replace this with the real story of your first date — where you went, what you talked about, the moment you both knew this was something. Specifics are what make a memory feel alive: the song playing, the joke that broke the ice, the walk home that lasted too long on purpose.</p>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-year">A year that tested us</div>
+        <h3>The hard days we got through</h3>
+        <p>Add the chapter where things weren't easy — and she showed up anyway. Whatever it was, this is the place to name how she carried you, or how you carried each other, and came out closer for it.</p>
+      </div>
+
+      <div class="t-item right">
+        <div class="t-dot"></div>
+        <div class="t-year">Four years later</div>
+        <h3>Still choosing each other</h3>
+        <p>And now — four years in, one more birthday candle lit, one more year of proof that what started in a room full of friends turned into the steadiest, warmest thing in my life. Here's to the years still ahead.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GALLERY ================= -->
+  <section id="gallery">
+    <div class="section-head">
+      <p class="eyebrow">In Pictures</p>
+      <h2>Moments worth keeping</h2>
+      <p>Eight frames are waiting for your photos. Each one will light up the moment you add an image.</p>
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid"></div>
+    <p class="gallery-note">To add a photo: replace the placeholder <code>src</code> in each <code>&lt;img&gt;</code> tag inside the <code>gallery-grid</code> in the code, or drop your image files into the same folder and point the src to the filename.</p>
+  </section>
+
+  <!-- ================= LETTER ================= -->
+  <section id="letter">
+    <div class="section-head">
+      <p class="eyebrow">A Letter, Sealed</p>
+      <h2>For your eyes only</h2>
+    </div>
+
+    <div class="letter-box">
+      <div class="seal-wrap">
+        <div class="wax-seal" id="wax-seal" role="button" tabindex="0" aria-label="Break the seal to read the letter">B</div>
+        <div class="seal-hint" id="seal-hint">Break the seal to read</div>
+      </div>
+
+      <div class="letter-content" id="letter-content">
+        <div class="letter-inner">
+          <p class="letter-greeting">Dear Babra,</p>
+
+          <p>There are some people who enter our lives so quietly that we don't realize, in that moment, that they are about to become part of our favorite story.Three years ago, I met you through a game. If someone had told me then that a simple conversation would become a friendship, that friendship would become a bond, and that bond would become one of the most meaningful parts of my life, I would never have believed them.
+             Yet here we are.Somewhere between late-night conversations, shared laughter, reading It Ends With Us together, and learning the little details that make you who you are, you became someone incredibly special to me.You became someone I looked forward to talking to.Someone whose messages could brighten an ordinary day.Someone whose presence felt like home, even from miles away.
+           </p>
+
+          <p>When I met you for the first time, I remember looking at you and feeling as though reality had somehow become more beautiful than imagination. And when we met again for tea, watching you smile across the table is a memory that time has never managed to steal from me.Then life carried me across an ocean to Boston.
+            But distance has a strange way of revealing what truly matters.No matter how many miles separated us, no matter how much time passed, you remained a constant thought in my heart. There was always a part of me that hoped our paths would cross again.
+            And when I saw you again recently, after all that time, it felt like opening a book I had never truly finished reading. The world around us seemed quieter. For a moment, all I could think was how happy I was that you were standing there in front of me.
+            Today is a special day.
+            It is your birthday.
+            And it is also a day that holds a special place in my heart because it reminds me of us.
+            Out of all the days in the year, it amazes me that the day we celebrate you is also a day that reminds me how grateful I am that you came into my life at all.
+           </p>
+
+          <p>Babra, if there is one thing I hope you always know, it is this:You have brought so much joy into my life.
+             More than you realize.
+            You have given me memories I cherish, laughter I still remember, stories I still revisit, and moments that continue to make my heart smile years later.
+            You have a way of making life feel lighter.
+            A way of making ordinary moments feel meaningful.
+            A way of being remembered long after a conversation ends.
+            And for that, I will always be grateful.
+            </p>
+
+          <p>I love you.</p>
+
+          <p>Not because of grand gestures or perfect moments.
+             I love you because of who you are.
+             Because of your heart.
+             Because of your kindness.
+             Because of the way you show up for the people you care about.
+             Because every chapter of my life that includes you somehow becomes more beautiful.
+             </p>
+
+          <p>As you celebrate your birthday, my wish for you is simple:
+             May this year bring you the happiness you deserve.
+             May your dreams find their way to you.
+             May your heart always have reasons to smile.
+             May you be surrounded by love, peace, laughter, and countless blessings.
+             May every door meant for you open.
+             May every prayer whispered in your heart be heard.
+             And may life surprise you with beautiful things when you least expect them.
+            </p>
+          <p>Thank you for being one of the most wonderful people I have ever known.
+             Thank you for every conversation, every memory, every laugh, and every moment.
+             Most of all, thank you for being you.
+             Happy Birthday,My Queen, Babra Jerotich.
+            If I could give you one gift today, it would be the ability to see yourself through my eyes—so you could understand just how special you truly are.
+          </p>
+
+          <p class="letter-sign">Forever yours, Roy</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WISH ================= -->
+  <section id="wish">
+    <p class="eyebrow">Make a Wish</p>
+    <h2 class="wish-title">One candle for the year behind you,<br>one for all the years ahead.</h2>
+
+    <div class="candle-wrap" id="candle" role="button" tabindex="0" aria-label="Blow out the candle and make a wish">
+      <div class="flame" id="flame"></div>
+      <div class="candle-stick"></div>
+    </div>
+    <div class="candle-label" id="candle-label">Tap the flame to make your wish</div>
+    <div class="wish-message" id="wish-message">Wish made. May it find its way to you. ✨</div>
+  </section>
+
+  <footer>
+  Some voices fade when the room empties.Yours stays in the walls.
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  // ---------------- Starfield ----------------
+  const starCanvas = document.getElementById('stars-canvas');
+  const sctx = starCanvas.getContext('2d');
+  let stars = [];
+
+  function resizeStars(){
+    starCanvas.width = window.innerWidth;
+    starCanvas.height = document.documentElement.scrollHeight;
+    const count = Math.floor((starCanvas.width * starCanvas.height) / 9000);
+    stars = Array.from({length: Math.min(count, 380)}, () => ({
+      x: Math.random() * starCanvas.width,
+      y: Math.random() * starCanvas.height,
+      r: Math.random() * 1.4 + 0.3,
+      baseAlpha: Math.random() * 0.6 + 0.25,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * 0.015 + 0.005
+    }));
+  }
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function drawStars(t){
+    sctx.clearRect(0,0,starCanvas.width, starCanvas.height);
+    for(const s of stars){
+      const a = reduceMotion ? s.baseAlpha : s.baseAlpha + Math.sin(t * s.speed + s.phase) * 0.25;
+      sctx.beginPath();
+      sctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      sctx.fillStyle = `rgba(243,236,223,${Math.max(0,a)})`;
+      sctx.fill();
+    }
+    if(!reduceMotion){
+      requestAnimationFrame(drawStars);
+    }
+  }
+
+  resizeStars();
+  requestAnimationFrame(drawStars);
+  window.addEventListener('resize', () => { resizeStars(); if(reduceMotion){ drawStars(0); } });
+
+  // ---------------- Floating petals/sparkles ----------------
+  const petalLayer = document.getElementById('petal-layer');
+  const glyphs = ['✦','✧','❀','✿','✶'];
+  function spawnPetal(){
+    const el = document.createElement('div');
+    el.className = 'petal';
+    el.textContent = glyphs[Math.floor(Math.random()*glyphs.length)];
+    const left = Math.random()*100;
+    const duration = 14 + Math.random()*12;
+    const size = 0.7 + Math.random()*1.1;
+    const driftX = (Math.random()*120 - 60) + 'px';
+    el.style.left = left + 'vw';
+    el.style.fontSize = size + 'rem';
+    el.style.setProperty('--drift-x', driftX);
+    el.style.animationDuration = duration + 's';
+    petalLayer.appendChild(el);
+    setTimeout(() => el.remove(), duration*1000 + 500);
+  }
+  if(!reduceMotion){
+    for(let i=0;i<6;i++){ setTimeout(spawnPetal, i*1200); }
+    setInterval(spawnPetal, 2200);
+  }
+
+  // ---------------- Timeline reveal on scroll ----------------
+  const tItems = document.querySelectorAll('.t-item');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  tItems.forEach(item => io.observe(item));
+
+  // ---------------- Gallery placeholders ----------------
+  const galleryGrid = document.getElementById('gallery-grid');
+  const photoLabels = [
+    'Where it began', 'First date', 'A quiet Sunday', 'An adventure',
+    'Just us', 'A celebration', 'Through the hard days', 'Today'
+  ];
+  photoLabels.forEach((label, i) => {
+    const frame = document.createElement('div');
+    frame.className = 'frame';
+    frame.innerHTML = `
+      <img src="" alt="${label} — add your photo here" data-fallback="1">
+      <div class="frame-placeholder">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+          <rect x="3" y="5" width="18" height="14" rx="1.5"/>
+          <circle cx="9" cy="10.5" r="1.6"/>
+          <path d="M21 16l-5.5-5.5a1.5 1.5 0 0 0-2.1 0L4 19"/>
+        </svg>
+        <span>${label}</span>
+      </div>
+      <div class="frame-corner tl"></div>
+      <div class="frame-corner br"></div>
+    `;
+    const img = frame.querySelector('img');
+    img.addEventListener('load', () => {
+      if(img.getAttribute('src')){ img.classList.add('loaded'); }
+    });
+    galleryGrid.appendChild(frame);
+  });
+
+  // ---------------- Wax seal / letter reveal ----------------
+  const seal = document.getElementById('wax-seal');
+  const letterContent = document.getElementById('letter-content');
+  const sealHint = document.getElementById('seal-hint');
+  let opened = false;
+
+  function openLetter(){
+    if(opened) return;
+    opened = true;
+    letterContent.classList.add('open');
+    sealHint.textContent = 'Sealed with love';
+    seal.style.transform = 'scale(0.94) rotate(8deg)';
+    seal.style.opacity = '0.55';
+    setTimeout(() => {
+      letterContent.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+    }, 350);
+  }
+
+  seal.addEventListener('click', openLetter);
+  seal.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openLetter(); } });
+
+  // ---------------- Candle wish + burst ----------------
+  const candle = document.getElementById('candle');
+  const flame = document.getElementById('flame');
+  const candleLabel = document.getElementById('candle-label');
+  const wishMessage = document.getElementById('wish-message');
+  const burstCanvas = document.getElementById('burst-canvas');
+  const bctx = burstCanvas.getContext('2d');
+  let blown = false;
+
+  function sizeBurstCanvas(){
+    burstCanvas.width = window.innerWidth;
+    burstCanvas.height = window.innerHeight;
+  }
+  sizeBurstCanvas();
+  window.addEventListener('resize', sizeBurstCanvas);
+
+  function burstAt(x, y){
+    const colors = ['#f2cd7e', '#d8af5f', '#c2466b', '#f3ecdf', '#9b5fc0'];
+    const particles = Array.from({length: 60}, () => {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 5 + 2;
+      return {
+        x, y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - 2,
+        life: 1,
+        decay: Math.random()*0.012 + 0.008,
+        size: Math.random()*4 + 2,
+        color: colors[Math.floor(Math.random()*colors.length)]
+      };
+    });
+
+    function frame(){
+      bctx.clearRect(0,0,burstCanvas.width, burstCanvas.height);
+      let alive = false;
+      for(const p of particles){
+        if(p.life <= 0) continue;
+        alive = true;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.12;
+        p.life -= p.decay;
+        bctx.globalAlpha = Math.max(p.life, 0);
+        bctx.fillStyle = p.color;
+        bctx.beginPath();
+        bctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+        bctx.fill();
+      }
+      bctx.globalAlpha = 1;
+      if(alive){ requestAnimationFrame(frame); }
+      else { bctx.clearRect(0,0,burstCanvas.width, burstCanvas.height); }
+    }
+    frame();
+  }
+
+  function blowCandle(){
+    if(blown) return;
+    blown = true;
+    flame.classList.add('out');
+    candleLabel.textContent = 'Wish made';
+    wishMessage.classList.add('show');
+
+    const rect = flame.getBoundingClientRect();
+    burstAt(rect.left + rect.width/2, rect.top + rect.height/2);
+  }
+
+  candle.addEventListener('click', blowCandle);
+  candle.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); blowCandle(); } });
+
+})();
+</script>
+
+</body>
+</html>
